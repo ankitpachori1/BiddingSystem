@@ -10,7 +10,7 @@ public class User {
 
     public User(String userId){
         this.userId = userId;
-        this.password = "123";
+        this.password = "pass123";
         this.isLoggedIn = false;
     }
 

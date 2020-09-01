@@ -1,8 +1,10 @@
 package bidder.controller;
 
 import bidder.enums.AuctionStatus;
+import bidder.enums.BidStatus;
 import bidder.models.Auction;
 import bidder.request.CreateAuctionRequest;
+import bidder.request.PlaceBidRequest;
 import bidder.service.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,12 @@ public class AuctionController {
     @GetMapping("auction/{status}")
     public List<Auction> getAllAuctionsByStatus(@PathVariable("status") AuctionStatus status){
         return service.getAllAuctionsByStatus(status);
+    }
+
+    @PostMapping("/auction/{itemCode}/bid")
+    public BidStatus placeBid(@PathVariable("itemCode") String itemCode, @RequestBody PlaceBidRequest request){
+        request.setItemCode(itemCode);
+        return service.placeBid(request);
     }
 
 }

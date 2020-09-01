@@ -1,5 +1,6 @@
 package bidder.service;
 
+import bidder.enums.BidStatus;
 import bidder.enums.UserStatus;
 import bidder.models.User;
 import bidder.repo.UserRepo;
@@ -22,7 +23,7 @@ public class UserService {
     }
 
     public UserStatus loginUser(UserLoginRequest request){
-        Optional<User> user = userRepo.getUser(request.getUserId());
+        Optional<User> user = getUser(request.getUserId());
         if(!user.isPresent()){
             return UserStatus.USER_NOT_PRESENT;
         }
@@ -31,6 +32,14 @@ public class UserService {
         }
         user.get().loginUser();
         return UserStatus.LOGGED_IN;
+    }
+
+    public Optional<User> getUser(String userId){
+        return userRepo.getUser(userId);
+    }
+
+    public Boolean checkLogin(User u){
+        return u.getIsLoggedIn();
     }
 
 }

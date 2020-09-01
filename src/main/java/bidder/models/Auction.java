@@ -3,7 +3,8 @@ package bidder.models;
 import bidder.enums.AuctionStatus;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -14,6 +15,15 @@ public class Auction {
     AuctionStatus status;
     Bid highestBidder;
     List<Bid> bids;
-    Date createdAt;
-    Date endedAt;
+    LocalDateTime createdAt;
+    LocalDateTime endedAt;
+
+    public Auction(String itemCode, Double basePrice, Double stepRate) {
+        this.itemCode = itemCode;
+        this.basePrice = basePrice;
+        this.stepRate = stepRate;
+        this.bids = new ArrayList<>();
+        this.status = AuctionStatus.RUNNING;
+        this.createdAt = LocalDateTime.now();
+    }
 }

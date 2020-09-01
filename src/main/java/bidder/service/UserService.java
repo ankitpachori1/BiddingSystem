@@ -5,12 +5,12 @@ import bidder.models.User;
 import bidder.repo.UserRepo;
 import bidder.request.UserLoginRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 public class UserService {
 
     @Autowired
